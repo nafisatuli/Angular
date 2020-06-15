@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["styles.scss"],"sourcesContent":["/* You can add global styles to this file, and also import other style files */\n@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');"],"file":"styles.css"}
