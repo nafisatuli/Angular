@@ -14,8 +14,8 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   styleUrls: ['./shopping-edit.component.scss'],
 })
 export class ShoppingEditComponent implements OnInit {
-  @ViewChild('#nameInput', { static: false }) nameInputRef: ElementRef;
-  @ViewChild('#amountInput', { static: false }) amountInputRef: ElementRef;
+  @ViewChild('nameInput', { static: false }) nameInputRef: ElementRef;
+  @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
 
   //using event emitter for adding ingredients
   //ingredients = new EventEmitter<{ name: string; amount: number }>(); //this is a type of javascript object,name and amount are property
