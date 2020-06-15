@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  loadFeature = 'recipe'; //initially stored feature which should be displayed
+  loadFeature = 'recipe'; //initially store the feature which should be displayed
 
   onNavigate($event: any) {
     this.loadFeature = $event;
