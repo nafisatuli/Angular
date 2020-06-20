@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../receipe.model';
 import { RecipeService } from '../recipe.service';
 
@@ -8,7 +8,7 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./receipe-list.component.scss'],
 })
 export class ReceipeListComponent implements OnInit {
-  @Output() recipeWasSelected = new EventEmitter<Recipe>();
+  //@Output() recipeWasSelected = new EventEmitter<Recipe>();
   // using receipe.model.ts class
   recipes: Recipe[]; //initially undefined
 
@@ -19,7 +19,7 @@ export class ReceipeListComponent implements OnInit {
     this.recipes = this.recipeService.getRecipe(); //will get copy of the recipe array
   }
 
-  OnRecipeSelected(recipe: Recipe) {
-    this.recipeWasSelected.emit(recipe);
-  }
+  // OnRecipeSelected(recipe: Recipe) {
+  //   this.recipeWasSelected.emit(recipe);
+  // }
 }
