@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Recipe } from './receipe.model';
+import { Ingredient } from '../shared/ingredient.model';
 
 export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
@@ -7,14 +8,16 @@ export class RecipeService {
   //array of recipe in the recipe service
   private recipes: Recipe[] = [
     new Recipe(
-      'A Test Recipe',
-      'This is simply a test',
-      'https://c1.wallpaperflare.com/preview/992/474/505/food-meat-recipe-power.jpg'
+      'Stuffed Potatoes',
+      'A super tasty dish!',
+      'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/10/4/0/FNM_110119-Name-This-Dish-Stuffed-Potatoes_s4x3.jpg.rend.hgtvcom.826.620.suffix/1570214935058.jpeg',
+      [new Ingredient('Meat', 1), new Ingredient('French fry', 20)]
     ),
     new Recipe(
-      'Another Test Recipe',
-      'This is simply a test',
-      'https://c1.wallpaperflare.com/preview/992/474/505/food-meat-recipe-power.jpg'
+      'Tandoori Chicken',
+      'Smells great and tastes so exotic!',
+      'https://www.mozismenu.com/wp-content/uploads/2018/03/Tandoori-Chicken-0.jpg',
+      [new Ingredient('Naan', 2), new Ingredient('Garlic sauce', 1)]
     ),
   ];
   getRecipe() {
