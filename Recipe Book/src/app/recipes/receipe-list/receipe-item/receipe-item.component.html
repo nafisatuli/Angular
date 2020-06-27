@@ -1,10 +1,15 @@
-<a href="#" class="List-group-item clearfix" (click)="onSelectItem()">
+<!-- property binding allows Angular to directly access the elements property in the html. this is a deeper access. When you say [value]="hello" Angular is grabbing the value property of the element, and setting your variable as that property's value. -->
+<a
+  style="cursor: pointer;"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  class="list-group-item clearfix"
+>
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
     <p class="list-group-item-text">{{ recipe.description }}</p>
   </div>
   <span class="pull-right">
-    <!-- property binding allows Angular to directly access the elements property in the html. this is a deeper access. When you say [value]="hello" Angular is grabbing the value property of the element, and setting your variable as that property's value. -->
     <img
       [src]="recipe.imgPath"
       alt="{{ recipe.name }}"

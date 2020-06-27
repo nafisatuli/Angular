@@ -28,6 +28,9 @@ export class RecipeService {
   getRecipe() {
     return this.recipes.slice(); //exact copy of recipes so that recipes can't get access
   }
+  getSingleRecipe(index: number) {
+    return this.recipes[index];
+  }
 
   addIngredientsToShoppinglist(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);

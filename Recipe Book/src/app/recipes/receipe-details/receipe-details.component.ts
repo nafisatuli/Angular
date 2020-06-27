@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../receipe.model';
 import { RecipeService } from '../recipe.service';
+import { ActivatedRoute, Params,Router } from '@angular/router';
 
 @Component({
   selector: 'app-receipe-details',
@@ -8,10 +9,23 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./receipe-details.component.scss'],
 })
 export class ReceipeDetailsComponent implements OnInit {
-  @Input() recipe: Recipe;
-  constructor(private recipeService: RecipeService) {}
+  //@Input() recipe: Recipe; //we are not receiving the value in this way
 
-  ngOnInit(): void {}
+  recipe: Recipe;
+  id: number;
+
+  constructor(
+    private recipeService: RecipeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+      this.recipe = this.recipeService.getSingleRecipe(this.id);
+    });
+  }
   onAddToShoppinglist() {
     this.recipeService.addIngredientsToShoppinglist(this.recipe.ingredients);
   }

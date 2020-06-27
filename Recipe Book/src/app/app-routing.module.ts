@@ -7,10 +7,18 @@ import { ReceipeDetailsComponent } from './recipes/receipe-details/receipe-detai
 import { ReceipeListComponent } from './recipes/receipe-list/receipe-list.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-  { path: 'recipes', component: ReceipesComponent },
+  {
+    path: 'recipes',
+    component: ReceipesComponent,
+    children: [
+      { path: '', component: RecipeStartComponent },
+      { path: ':id', component: ReceipeDetailsComponent },
+    ],
+  },
   { path: 'shopping-list', component: ShoppingListComponent },
 ];
 @NgModule({

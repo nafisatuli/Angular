@@ -8,8 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   loadFeature = 'recipe'; //initially store the feature which should be displayed
 
-  onNavigate($event: any) {
-    this.loadFeature = $event;
-    console.log($event);
+  onNavigate(feature: string) {
+    this.loadFeature = feature;
   }
 }
