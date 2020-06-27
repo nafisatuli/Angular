@@ -28,4 +28,7 @@ export class ReceipeListComponent implements OnInit {
   // OnRecipeSelected(recipe: Recipe) {
   //   this.recipeWasSelected.emit(recipe);
   // }
+  onNewRecipe() {
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
 }
