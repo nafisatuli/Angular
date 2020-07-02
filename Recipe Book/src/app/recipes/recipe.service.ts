@@ -3,9 +3,10 @@ import { Recipe } from './receipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
+
 @Injectable()
 export class RecipeService {
-  recipeSelected = new EventEmitter<Recipe>();
+ // recipeSelected = new Subject<Recipe>(); //it is no need after adding routing
 
   //array of recipe in the recipe service
   private recipes: Recipe[] = [
