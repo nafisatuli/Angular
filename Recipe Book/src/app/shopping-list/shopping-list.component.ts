@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
-import { from, Subscription } from 'rxjs';
 import { ShoppingListService } from './shopping-list.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ShoppingListService } from './shopping-list.service';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.scss'],
 })
-export class ShoppingListComponent implements OnInit,OnDestroy {
+export class ShoppingListComponent implements OnInit, OnDestroy {
   //store subscription to a property
   private igChangeSub: Subscription;
 
@@ -30,6 +30,9 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
   // OnIngAdded(ing: Ingredient) {
   //   this.ingredients.push(ing);
   // }
+  onEditItem(index: number) {
+    this.slService.startedEditing.next(index); //we can listen to now in shopping-edit
+  }
 
   ngOnDestroy() {
     this.igChangeSub.unsubscribe();
