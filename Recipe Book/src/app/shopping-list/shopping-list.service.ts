@@ -38,4 +38,10 @@ export class ShoppingListService {
     this.ingredients[index] = newIng;
     this.ingredientChangedAdd.next(this.ingredients.slice()); //emit updated ingredients
   }
+
+  deleteIngredient(index:number) {
+    //splice allow us to start at a specific point
+    this.ingredients.splice(index, 1);
+    this.ingredientChangedAdd.next(this.ingredients.slice());
+  }
 }
