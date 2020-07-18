@@ -1,12 +1,14 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+
 import { Recipe } from './receipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
-
 @Injectable()
 export class RecipeService {
- // recipeSelected = new Subject<Recipe>(); //it is no need after adding routing
+  recipesChanged = new Subject<Recipe[]>(); //pass array of recipe as a value
+  // recipeSelected = new Subject<Recipe>(); //it is no need after adding routing
 
   //array of recipe in the recipe service
   private recipes: Recipe[] = [
@@ -35,5 +37,14 @@ export class RecipeService {
 
   addIngredientsToShoppinglist(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice()); //in recipe list we need to listen to this 
+  }
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recipesChanged.next(this.recipes.slice());
   }
 }
