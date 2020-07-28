@@ -41,10 +41,15 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
-    this.recipesChanged.next(this.recipes.slice()); //in recipe list we need to listen to this 
+    this.recipesChanged.next(this.recipes.slice()); //in recipe list we need to listen to this
   }
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
     this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1); //remove it
+    this.recipesChanged.next(this.recipes.slice()); //emit a copy of the updated recipe
   }
 }
