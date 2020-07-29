@@ -3,7 +3,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 
-
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
@@ -64,6 +63,9 @@ export class RecipeEditComponent implements OnInit {
     //if we edit this will take to the detail page
     //if we click the new button it will take to the recipe page
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+  onDeleteIngredient(index: number) {
+    (<FormArray>this.recipeForm.get('ingredients')).clear();
   }
   //initialize our recipe edit form
   //this method should be called when our route params will change bcz that indicate we reload the page
