@@ -22,4 +22,13 @@ export class DataStorageService {
         console.log(response);
       });
   }
+  fetchRecipes() {
+    //send a request to get our recipes
+    this.http
+      .get<Recipe[]>('https://recipe-book-94609.firebaseio.com/recipes.json')
+      .subscribe((recipes) => {
+        //console.log(recipes);
+        this.recipeService.setRecipes(recipes);
+      });
+  }
 }

@@ -28,6 +28,12 @@ export class RecipeService {
 
   constructor(private slService: ShoppingListService) {}
 
+  //override the set of recipes
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
   getRecipe() {
     return this.recipes.slice(); //exact copy of recipes so that recipes can't get access
   }
