@@ -14,8 +14,8 @@ export class RecipeEditComponent implements OnInit {
 
   id: number;
   editMode = false;
-
   recipeForm: FormGroup;
+
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
@@ -59,25 +59,25 @@ export class RecipeEditComponent implements OnInit {
   get controls() {
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
+  onDeleteIngredient(index: number) {
+    (<FormArray>this.recipeForm.get('ingredients')).clear();
+  }
   onCancel() {
     //if we edit this will take to the detail page
     //if we click the new button it will take to the recipe page
     this.router.navigate(['../'], { relativeTo: this.route });
   }
-  onDeleteIngredient(index: number) {
-    (<FormArray>this.recipeForm.get('ingredients')).clear();
-  }
   //initialize our recipe edit form
   //this method should be called when our route params will change bcz that indicate we reload the page
   private initForm() {
     let recipeName = '';
-    let recipeImgPath = '';
+    let recipeImagePath = '';
     let recipeDescription = '';
     let recipeIngredients = new FormArray([]);
     if (this.editMode) {
       const recipe = this.recipeService.getSingleRecipe(this.id); //fetch recipe
       recipeName = recipe.name;
-      recipeImgPath = recipe.imgPath;
+      recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
 
       if (recipe['ingredients']) {
@@ -97,7 +97,7 @@ export class RecipeEditComponent implements OnInit {
 
     this.recipeForm = new FormGroup({
       name: new FormControl(recipeName, Validators.required),
-      imagePath: new FormControl(recipeImgPath, Validators.required),
+      imagePath: new FormControl(recipeImagePath, Validators.required),
       description: new FormControl(recipeDescription, Validators.required),
       ingredients: recipeIngredients,
     });

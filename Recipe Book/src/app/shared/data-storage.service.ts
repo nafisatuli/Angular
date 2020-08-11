@@ -2,6 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
 import { Recipe } from '../recipes/receipe.model';
 import { RecipeService } from '../recipes/recipe.service';
 
@@ -24,11 +25,26 @@ export class DataStorageService {
   }
   fetchRecipes() {
     //send a request to get our recipes
-    this.http
+    return this.http
       .get<Recipe[]>('https://recipe-book-94609.firebaseio.com/recipes.json')
-      .subscribe((recipes) => {
-        //console.log(recipes);
-        this.recipeService.setRecipes(recipes);
-      });
+      .pipe(
+        map((recipes) => {
+          return recipes.map((recipe) => {
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : [],
+            };
+          });
+        }),
+        tap((recipes) => {
+          this.recipeService.setRecipes(recipes);
+        })
+      );
+    // .subscribe((recipes) => {
+    //   //console.log(recipes);
+    //   this.recipeService.setRecipes(recipes);
+    // });
   }
+  //rxjs map here in pipe helps to transform data
+  //recipes.map is a normal js array method
 }
