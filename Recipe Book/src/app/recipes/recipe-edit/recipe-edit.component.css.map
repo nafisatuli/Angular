@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,AAAA,WAAW;AAChB,QAAQ,AAAA,WAAW,CAAC;EAChB,MAAM,EAAE,aAAa;CACxB",
+    "sources": [
+        "recipe-edit.component.scss"
+    ],
+    "names": [],
+    "file": "recipe-edit.component.css"
+}
